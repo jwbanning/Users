@@ -2,7 +2,7 @@
     "info": {
         "_postman_id": "cc188e39-fc67-44fe-aea2-12957b6f3086",
         "name": "Utility - Users API",
-        "description": "This collection is designed to\n show how you might mock, test document a new API. In this case, we're assuming that we're going to create a basic user management API.\n\nIt has basic CRUD operations listed below.\n\nHit the \"Run in Postman\" button to see the pre-request and test scripts powering this collection.\n\nTry running the collection through the Collection Runner to see how the mock allows us to scope out all our responses and write our tests in advance.\n\n## Summary\n\nHaving undergone the effort of building out our collection in Postman first:\n\n- Using Postman Mocks\n- Writing tests\n \nThis has allowed us to then build out our API to match, meaning we could:\n(Update the `url` in the environment to `http://localhost:3000` and run the following Node API: https://github.com/matt-ball/users-api)\n\n- Debug our API as it was being built\n- Ensure parity with our mocks, meeting the designed blueprint\n- Run tests against the API as it was being built so that it's watertight\n\n## Code Sample with Gerry's SDK\n\nHere is a code sample.. \n\n```\nvar https = require('follow-redirects').https;\nvar fs = require('fs');\n\nvar qs = require('querystring');\n\nvar options = {\n  'method': 'POST',\n  'hostname': '{{url}}',\n  'path': '/create',\n  'headers': {\n    'Content-Type': 'application/x-www-form-urlencoded'\n  },\n  'maxRedirects': 20\n};\n\nvar req = https.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function (chunk) {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n\n  res.on(\"error\", function (error) {\n    console.error(error);\n  });\n});\n\nvar postData = qs.stringify({\n  'firstName': 'Ben',\n  'lastName': 'Smith',\n  'password': 'pw'\n});\n\nreq.write(postData);\n\nreq.end();\n```\n\n\n\n\nAs a result:\n\n- We now have a shareable collection for our API\n- We have beautiful, rich documentation showing how it works\n- We can run our collection in a fully automated fashion and attach it to our CI/CD pipeline\n- We can create a Postman Monitor with no added effort to check for responsiveness and correctness",
+        "description": "Docs are good\n\nThis collection is designed to\n show how you might mock, test document a new API. In this case, we're assuming that we're going to create a basic user management API.\n\nIt has basic CRUD operations listed below.\n\nHit the \"Run in Postman\" button to see the pre-request and test scripts powering this collection.\n\nTry running the collection through the Collection Runner to see how the mock allows us to scope out all our responses and write our tests in advance.\n\n## Summary\n\nHaving undergone the effort of building out our collection in Postman first:\n\n- Using Postman Mocks\n- Writing tests\n \nThis has allowed us to then build out our API to match, meaning we could:\n(Update the `url` in the environment to `http://localhost:3000` and run the following Node API: https://github.com/matt-ball/users-api)\n\n- Debug our API as it was being built\n- Ensure parity with our mocks, meeting the designed blueprint\n- Run tests against the API as it was being built so that it's watertight\n\n## Code Sample with Gerry's SDK\n\nHere is a code sample.. \n\n```\nvar https = require('follow-redirects').https;\nvar fs = require('fs');\n\nvar qs = require('querystring');\n\nvar options = {\n  'method': 'POST',\n  'hostname': '{{url}}',\n  'path': '/create',\n  'headers': {\n    'Content-Type': 'application/x-www-form-urlencoded'\n  },\n  'maxRedirects': 20\n};\n\nvar req = https.request(options, function (res) {\n  var chunks = [];\n\n  res.on(\"data\", function (chunk) {\n    chunks.push(chunk);\n  });\n\n  res.on(\"end\", function (chunk) {\n    var body = Buffer.concat(chunks);\n    console.log(body.toString());\n  });\n\n  res.on(\"error\", function (error) {\n    console.error(error);\n  });\n});\n\nvar postData = qs.stringify({\n  'firstName': 'Ben',\n  'lastName': 'Smith',\n  'password': 'pw'\n});\n\nreq.write(postData);\n\nreq.end();\n```\n\n\n\n\nAs a result:\n\n- We now have a shareable collection for our API\n- We have beautiful, rich documentation showing how it works\n- We can run our collection in a fully automated fashion and attach it to our CI/CD pipeline\n- We can create a Postman Monitor with no added effort to check for responsiveness and correctness",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
@@ -153,12 +153,20 @@
                             ]
                         },
                         "url": {
-                            "raw": "{{url}}/create",
+                            "raw": "{{url}}/create?foo=bar",
                             "host": [
                                 "{{url}}"
                             ],
                             "path": [
                                 "create"
+                            ],
+                            "query": [
+                                {
+                                    "key": "foo",
+                                    "value": "bar",
+                                    "description": "Desc this for ",
+                                    "type": "text"
+                                }
                             ]
                         },
                         "description": "Creates a new user in the system. The user will be assigned an ID automatically. This can be found in the response."
@@ -1633,17 +1641,17 @@
     ],
     "variable": [
         {
-            "id": "bdc08710-48f9-415b-9905-98df4b141e4f",
+            "id": "e5a64650-ba7d-4778-ad6a-2d388280618e",
             "key": "firstName",
             "value": "Ben"
         },
         {
-            "id": "af38b7ae-c9a1-4eeb-ace2-c3acac8c2eb8",
+            "id": "b4c769ab-7783-459d-82e3-083b10a6601d",
             "key": "lastName",
             "value": "Smith"
         },
         {
-            "id": "20979cfa-12fb-4d6e-ae73-d7b33d1a2ebc",
+            "id": "dcd158d0-d3d4-43aa-bf83-b2c2344b609c",
             "key": "password",
             "value": "pw"
         }
